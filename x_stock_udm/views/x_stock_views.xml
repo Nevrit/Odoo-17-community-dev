@@ -1,0 +1,31 @@
+<odoo>
+  <data>
+
+  <!-- Form view -->
+    <record model="ir.ui.view" id="x_product_template_view_form_inherit">
+      <field name="name">product.template.inherit.form.view</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_only_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='uom_po_id']" position="after">
+          <field name="x_qty_in_kg" />
+        </xpath>
+      </field>
+    </record>
+
+    <!-- Kanban views -->
+    <record id="product_template_kanban_view_inherit" model="ir.ui.view">
+      <field name="name">product.template.kanban.view.inherit</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_kanban_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//div[@class='oe_kanban_details']" position="inside">
+          <div>
+            En stock :
+            <field name="x_qty_in_kg"/> Kg
+          </div>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>
